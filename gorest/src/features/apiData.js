@@ -7,7 +7,7 @@ export const postApi = createApi({
   }),
   endpoints: (builder) => ({
     getPosts: builder.query({
-      query: () => `posts`,
+      query: () => `posts?page=1&per_page=6`,
     }),
   }),
 });
