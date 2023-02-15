@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Navbar />
       <div className="grid grid-cols-12">
-        <div className="col-start-2 col-end-12 grid grid-cols-3 gap-[10px] p-[50px]">
+        <div className="col-start-2 col-end-12 grid grid-cols-3 gap-[20px] p-[50px]">
           {data
             ? data?.map((post, i) => {
                 return <Card post={post} key={post.id} i={i} />;
