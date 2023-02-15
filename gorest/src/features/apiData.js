@@ -15,8 +15,15 @@ export const postApi = createApi({
     getComment: builder.query({
       query: (id) => `posts/${id}/comments`,
     }),
+    getUsers: builder.query({
+      query: () => `users?page=1&per_page=4`,
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useGetPostDetailsQuery, useGetCommentQuery } =
-  postApi;
+export const {
+  useGetPostsQuery,
+  useGetPostDetailsQuery,
+  useGetCommentQuery,
+  useGetUsersQuery,
+} = postApi;
