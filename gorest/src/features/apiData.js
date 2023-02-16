@@ -16,10 +16,13 @@ export const postApi = createApi({
       query: (id) => `posts/${id}/comments`,
     }),
     getUsers: builder.query({
-      query: () => `users?page=1&per_page=4`,
+      query: (page) => `users?page=${page}&per_page=4`,
     }),
     forPagination: builder.query({
       query: () => `posts`,
+    }),
+    forPaginationUser: builder.query({
+      query: () => `users`,
     }),
   }),
 });
@@ -30,4 +33,5 @@ export const {
   useGetCommentQuery,
   useGetUsersQuery,
   useForPaginationQuery,
+  useForPaginationUserQuery,
 } = postApi;

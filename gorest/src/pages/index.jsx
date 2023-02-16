@@ -13,7 +13,6 @@ export default function Home() {
 
   useEffect(() => {
     setTotalPage(Math.round(pagin?.length / 6));
-    let tot = Math.round(pagin?.length / 6);
   }, [load]);
 
   let handleChangePagination = (e, v) => {
