@@ -7,7 +7,7 @@ export const postApi = createApi({
   }),
   endpoints: (builder) => ({
     getPosts: builder.query({
-      query: () => `posts?page=1&per_page=6`,
+      query: (page) => `posts?page=${page}&per_page=6`,
     }),
     getPostDetails: builder.query({
       query: (id) => `posts/${id}`,
@@ -18,6 +18,9 @@ export const postApi = createApi({
     getUsers: builder.query({
       query: () => `users?page=1&per_page=4`,
     }),
+    forPagination: builder.query({
+      query: () => `posts`,
+    }),
   }),
 });
 
@@ -26,4 +29,5 @@ export const {
   useGetPostDetailsQuery,
   useGetCommentQuery,
   useGetUsersQuery,
+  useForPaginationQuery,
 } = postApi;

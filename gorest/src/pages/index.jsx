@@ -1,16 +1,24 @@
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import { useGetPostsQuery } from "@/features/apiData";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "@/components/CardHome";
+import { Pagination } from "@mui/material";
+import { useForPaginationQuery } from "@/features/apiData";
 export default function Home() {
-  const { data, error, isLoading } = useGetPostsQuery(1);
+  const [totalPage, setTotalPage] = useState(0);
+  const [page, setPage] = useState(1);
+  const { data, error, isLoading } = useGetPostsQuery(page);
+  const { data: pagin, isLoading: load } = useForPaginationQuery();
+
   useEffect(() => {
-    data ? console.log(data, "><<") : null;
-    console.log("masuk");
-    console.log(data);
-  }, []);
-  console.log(data);
+    setTotalPage(Math.round(pagin?.length / 6));
+    let tot = Math.round(pagin?.length / 6);
+  }, [load]);
+
+  let handleChangePagination = (e, v) => {
+    setPage(v);
+  };
   return (
     <>
       <Navbar />
@@ -22,6 +30,9 @@ export default function Home() {
               })
             : null}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <Pagination onChange={handleChangePagination} count={totalPage} />
       </div>
     </>
   );
